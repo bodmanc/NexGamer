@@ -1,7 +1,14 @@
+using Microsoft.EntityFrameworkCore;
+using NexGamer.Web.Data;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+
+builder.Services.AddDbContext<NexGamerDbContext>(options =>
+options.UseSqlServer(builder.Configuration.GetConnectionString("NexGamerConnectionString")
+));
 
 var app = builder.Build();
 
